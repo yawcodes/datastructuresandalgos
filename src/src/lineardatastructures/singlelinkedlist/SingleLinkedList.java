@@ -35,20 +35,17 @@ public class SingleLinkedList {
     public Node removeTail() {
         System.out.println("**** Removing tail Node ****");
         Node removedTail = this.head;
+        Node currentNode = this.head;
         Node previousNode = null;
-        if (removedTail == null) {
-            System.out.println("List is Empty!");
+        if (currentNode == null) {
             return null;
         }
-        if (removedTail.getNextNode() == null) {
-            this.removeHead();
-        } else {
-            while (removedTail.getNextNode() != null) {
-                previousNode = removedTail;
-                removedTail = removedTail.getNextNode();
-            }
-            previousNode.setNextNode(null);
+        while (currentNode.getNextNode() != null) {
+            previousNode = currentNode;
+            currentNode = currentNode.getNextNode();
         }
+        removedTail = currentNode;
+        previousNode.setNextNode(null);
         System.out.printf("******** Successfully removed: \"%s\" \n", removedTail.data);
         return removedTail;
     }
