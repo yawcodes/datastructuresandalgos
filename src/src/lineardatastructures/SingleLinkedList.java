@@ -39,6 +39,7 @@ public class SingleLinkedList {
         Node removedTail = this.head;
         Node previousNode = null;
         if (removedTail == null) {
+            System.out.println("List is Empty!");
             return null;
         }
         if (removedTail.getNextNode() == null) {
@@ -52,6 +53,33 @@ public class SingleLinkedList {
         }
         System.out.printf("******** Successfully removed: \"%s\" \n", removedTail.data);
         return removedTail;
+    }
+
+    public Node removeByData(String data) {
+        System.out.println("**** Removing node by data ****");
+        Node currentNode = this.head;
+        Node previousNode = null;
+        Node nodeToRemove = new Node(data);
+        Node removedNode = null;
+        if (currentNode.data.equals(data)) {
+            removedNode = this.removeHead();
+        } else {
+            while (currentNode != null) {
+                if (currentNode.data.equals(data)) {
+                    if (currentNode.getNextNode() == null) {
+                        previousNode.setNextNode(null);
+                        break;
+                    }
+                    previousNode.setNextNode(currentNode.getNextNode());
+                    break;
+                }
+                previousNode = currentNode;
+                currentNode = currentNode.getNextNode();
+            }
+            removedNode = previousNode.getNextNode();
+        }
+        System.out.printf("******** Successfully removed \"%s\" from linkedList\n", currentNode.data);
+        return currentNode;
     }
 
     public void addToTail(String data) {
