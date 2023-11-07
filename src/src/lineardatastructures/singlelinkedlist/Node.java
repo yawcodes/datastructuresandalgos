@@ -1,4 +1,4 @@
-package lineardatastructures;
+package lineardatastructures.singlelinkedlist;
 
 public class Node {
     public String data;

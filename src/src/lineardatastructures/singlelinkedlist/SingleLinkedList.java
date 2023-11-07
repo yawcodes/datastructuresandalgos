@@ -1,6 +1,4 @@
-package lineardatastructures;
-
-import java.io.OutputStream;
+package lineardatastructures.singlelinkedlist;
 
 public class SingleLinkedList {
     public Node head;
@@ -57,29 +55,20 @@ public class SingleLinkedList {
 
     public Node removeByData(String data) {
         System.out.println("**** Removing node by data ****");
+        Node nodeToRemove = null;
         Node currentNode = this.head;
-        Node previousNode = null;
-        Node nodeToRemove = new Node(data);
-        Node removedNode = null;
-        if (currentNode.data.equals(data)) {
-            removedNode = this.removeHead();
-        } else {
-            while (currentNode != null) {
-                if (currentNode.data.equals(data)) {
-                    if (currentNode.getNextNode() == null) {
-                        previousNode.setNextNode(null);
-                        break;
-                    }
-                    previousNode.setNextNode(currentNode.getNextNode());
-                    break;
-                }
-                previousNode = currentNode;
-                currentNode = currentNode.getNextNode();
+        while (currentNode != null) {
+            if (currentNode.data.equals(data)) {
+                nodeToRemove = currentNode;
+                break;
             }
-            removedNode = previousNode.getNextNode();
+            currentNode = currentNode.getNextNode();
         }
-        System.out.printf("******** Successfully removed \"%s\" from linkedList\n", currentNode.data);
-        return currentNode;
+        if (nodeToRemove == null) {
+            return null;
+        }
+        System.out.printf("******** Successfully removed \"%s\" from linkedList\n", nodeToRemove.data);
+        return nodeToRemove;
     }
 
     public void addToTail(String data) {
