@@ -8,7 +8,7 @@ public class DoubleLinkedList {
         StringBuilder output = new StringBuilder("<head> ");
         Node currentNode = this.head;
         while (currentNode != null) {
-            output.append(currentNode.data).append(" --> ");
+            output.append(currentNode.data).append(" <--> ");
             currentNode = currentNode.getNextNode();
         }
         output.append("<tail>");
@@ -106,5 +106,47 @@ public class DoubleLinkedList {
         }
         System.out.printf("******** Successfully added \"%s\" as new head node. \n", data);
     }
+
+    public void addToHead(Node node) {
+        System.out.println("**** Adding to Head Node ****");
+        Node currentHead = this.head;
+        if (currentHead != null) {
+            currentHead.setPreviousNode(node);
+            node.setNextNode(currentHead);
+        }
+        this.head = node;
+        if (this.tail == null) {
+            this.tail = this.head;
+        }
+        System.out.printf("******** Successfully added \"%s\" as new head node. \n", node.data);
+    }
+
+    public Node findNode(String data) {
+        Node currentNode = this.head;
+        Node matchingNode = null;
+        while (currentNode.getNextNode() != null) {
+            if (currentNode.data.equals(data)) {
+                matchingNode = currentNode;
+                return matchingNode;
+            } else {
+                currentNode = currentNode.getNextNode();
+            }
+        }
+        return matchingNode;
+    }
+
+    /**
+     * First find the two nodes by calling the findNode() on data1 and data2
+     * This returns node1 and node2
+     * Check if both Nodes are null if they are return null
+     * Create a temporary Node tempNode and set it equal to node2
+     * ---- Swapping node2 in node1's place ----
+     * Set node2 next node to node1 next node and set node2 previous node to node1 previous node
+     * Set node1 previous node to node2 and set node2 next node previous node to node1
+     * ---- Swapping node1 in node2's place ---- Caviat is we will be using tempNode as node2
+     * Set node1 next node to tempNode next node and set node1 previous node to tempNode previous node
+     * Set tempNode previous node next node to node1 and set tempNode next node previous node to node1
+     *
+     */
 
 }
