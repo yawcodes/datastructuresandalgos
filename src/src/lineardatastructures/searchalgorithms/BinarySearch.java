@@ -21,6 +21,7 @@ public class BinarySearch {
             }
         }
         return -1;
+        
     }
 
     public static void main(String[] args) {
