@@ -1,4 +1,4 @@
-package nonlineardatastructures;
+package nonlineardatastructures.tree;
 
 public class Tree {
     public TreeNode root;
